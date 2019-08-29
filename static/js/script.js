@@ -790,7 +790,7 @@ $(document).ready(function (){
 						<div class="form-group2-area">负载均衡域名</div>
 						<div class="form-group2 database">
 							<label class="database-dsn-label">图片域名</label>
-							<input class="database-dsn" type="text" name="imageServer[name]" placeholder="" value="${data.image_server.name}"><span></span>
+							<input class="database-dsn" type="text" name="imageServerName" placeholder="" value="${data.imageServerName}"><span></span>
 						</div>
 					</div>
 					<div class="area">
