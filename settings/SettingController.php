@@ -197,7 +197,7 @@ class SettingController extends Controller
         $generalSettings['watermark']['image'] = $imageWatermark;
         $generalSettings['watermark']['text'] = $textWatermark;
         $generalSettings['commonUsedDirs'] = $commonUsedDir;
-        $generalSettings['imageServerName'] = $imageServerName;
+        $generalSettings['imageServerName'] = $imageServerName;//负载均衡图片域名
 
         return json_encode([
             'code' => 0,
@@ -217,10 +217,12 @@ class SettingController extends Controller
         $imageWatermarkFile = $this->storagesDir . '/image-watermark.json';
         $customFormatFile = $this->storagesDir . '/customFormat.json';
         $commonUsedDirFile = $this->storagesDir . '/common-used-dir.json';
+        $imageServerNameFile = $this->storagesDir . '/image-server-name.json';
 
         $textWatermarkJson = json_encode($_POST['watermark']['text'], JSON_UNESCAPED_UNICODE);
         $imageWatermarkJson = json_encode($_POST['watermark']['image'], JSON_UNESCAPED_UNICODE);
         $customFormatJson = json_encode($_POST['customFormat'], JSON_UNESCAPED_UNICODE);
+        $imageServerNameJson=json_encode($_POST['imageServerName'],JSON_UNESCAPED_UNICODE);
 
         $commonUsedDir = trim($_POST['common-used-dir']);
         $commonUsedDirs = [];
@@ -252,6 +254,7 @@ class SettingController extends Controller
         file_put_contents($customFormatFile, $customFormatJson);
         file_put_contents($generalSettingsFile, $generalSettingsJson);
         file_put_contents($commonUsedDirFile, $commonUsedDirJson);
+        file_put_contents($imageServerNameFile, $imageServerNameJson);
 
         return json_encode([
             'code' => 0,
